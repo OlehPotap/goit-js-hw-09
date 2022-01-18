@@ -12,16 +12,15 @@ let bgChangerInterval = null;
 
 buttonEls.forEach(el => {
   el.addEventListener('click', () => {
+    el.setAttribute('disabled', 'disabled');
     if (el.hasAttribute('data-start')) {
       bgChangerInterval = setInterval(() => {
         document.body.style.backgroundColor = getRandomHexColor();
       }, 1000);
-      el.setAttribute('disabled', 'disabled');
-      [...buttonEls][1].removeAttribute('disabled');
+      document.querySelector('button[data-stop]').removeAttribute('disabled');
     } else {
       clearInterval(bgChangerInterval);
-      el.setAttribute('disabled', 'disabled');
-      [...buttonEls][0].removeAttribute('disabled');
+      document.querySelector('button[data-start]').removeAttribute('disabled');
     }
   });
 });
