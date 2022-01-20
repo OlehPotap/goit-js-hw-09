@@ -5,13 +5,13 @@ import 'flatpickr/dist/flatpickr.min.css';
 
 import Notiflix from 'notiflix';
 
-// Функция форматирования времени
+// =============================Функция форматирования времени
 
 function addLeadingZero(value) {
   return String(value).padStart(2, 0);
 }
 
-// Функция конвертации милисекунд в адекватную дату
+// =============================Функция конвертации милисекунд в адекватную дату
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -32,7 +32,7 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-// Обращаемся к елементам на странице
+// ====================================================Обращаемся к елементам на странице
 
 const startButtonEl = document.querySelector('button[data-start]');
 const dateInputEl = document.querySelector('#datetime-picker');
