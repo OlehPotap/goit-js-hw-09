@@ -17,14 +17,14 @@ function createPromise(position, delay) {
       } else {
         reject({ position, delay });
       }
-    }, Number(firstDelayInputEl.value) + delay);
+    }, delay);
   });
   promise
     .then(({ position, delay }) => {
-      Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+      Notiflix.Notify.success(`✅ Fulfilled promise ${position + 1} in ${delay}ms`);
     })
     .catch(({ position, delay }) => {
-      Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+      Notiflix.Notify.failure(`❌ Rejected promise ${position + 1} in ${delay}ms`);
     });
 }
 
@@ -34,7 +34,9 @@ submitFormEl.addEventListener('submit', event => {
 });
 
 function CreateSomeAmountOfPromises() {
-  for (let i = 1; i - 1 < Number(amountInputEl.value); i += 1) {
-    createPromise(i, Number(delayStepInputEl.value * i));
+  let firstDelay = Number(firstDelayInputEl.value);
+  for (let i = 0; i < Number(amountInputEl.value); i += 1) {
+    createPromise(i, firstDelay);
+    firstDelay += Number(delayStepInputEl.value);
   }
 }
