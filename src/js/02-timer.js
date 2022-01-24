@@ -67,6 +67,12 @@ flatpickr(dateInputEl, {
 let deadline = null;
 let setIntervalForTimer = null;
 
+function checkTimer() {
+  if (Number(document.querySelector('span[data-seconds]').textContent) <= 0) {
+    clearInterval(setIntervalForTimer);
+  }
+}
+
 startButtonEl.addEventListener('click', event => {
   setIntervalForTimer = setInterval(() => {
     deadline = new Date(dateInputEl.value);
@@ -79,5 +85,6 @@ startButtonEl.addEventListener('click', event => {
     document.querySelector('span[data-seconds]').textContent = addLeadingZero(
       convertedDate.seconds,
     );
+    checkTimer();
   }, 1000);
 });
